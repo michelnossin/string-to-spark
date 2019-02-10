@@ -19,14 +19,13 @@ class TestStringToSpark extends FunSuite with Matchers with Fixtures {
                      |1, "2014/01/01 23:00:01",1499959917383
                      |2, "2014/11/31 12:40:32",1198138008843
                      """
-    val jsonDfContainsMichelColumn = jsonDf.columns.exists(columnName => columnName == "michel")
-    val singleCsvDfContains3Columns = singleCsvDf.columns.length == 3
-    val multiCsvDfContains2Rows = multiCsvDf.count == 2
-    val multiCsvDfContainsTimedumpColumn = multiCsvDf.columns.exists(columnName => columnName == "timedump")
 
-    assert(jsonDfContainsMichelColumn)
-    assert(singleCsvDfContains3Columns) 
-    assert(multiCsvDfContains2Rows)
-    assert(multiCsvDfContainsTimedumpColumn)
+    assert(jsonDf.columns
+                 .exists(columnName => columnName == "michel"))
+    assert(singleCsvDf.columns
+                      .length == 3)
+    assert(multiCsvDf.count == 2)
+    assert(multiCsvDf.columns
+                     .exists(columnName => columnName == "timedump"))
   }
 }
